@@ -1,15 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"os"
-
 	"context"
+	"fmt"
 
-	proto "github.com/bijeshos/go.microservices.demo/service/proto"
-	"github.com/micro/cli"
+	//"os"
+
+	proto "github.com/bijeshos/go.microservices.demo/proto/greeter"
+	//cli "github.com/micro/go-micro/cli/v2"
 	"github.com/micro/go-micro/v2"
-
 )
 
 /*
@@ -19,7 +18,7 @@ Example usage of top level service initialisation
 type Greeter struct{}
 
 func (g *Greeter) Hello(ctx context.Context, req *proto.Request, rsp *proto.Response) error {
-	rsp.Greeting = "Hello " + req.Name
+	rsp.Msg = "Hello " + req.Name
 	return nil
 }
 
@@ -36,7 +35,7 @@ func runClient(service micro.Service) {
 	}
 
 	// Print response
-	fmt.Println(rsp.Greeting)
+	fmt.Println(rsp.Msg)
 }
 
 func main() {
@@ -52,24 +51,26 @@ func main() {
 
 		// Add runtime flags
 		// We could do this below too
-		micro.Flags(cli.BoolFlag{
+		/*micro.Flags(cli.BoolFlag{
 			Name:  "run_client",
 			Usage: "Launch the client",
-		}),
+		}),*/
 	)
 
 	// Init will parse the command line flags. Any flags set will
 	// override the above settings. Options defined here will
 	// override anything set on the command line.
 	service.Init(
-		// Add runtime action
-		// We could actually do this above
-		micro.Action(func(c *cli.Context) {
-			if c.Bool("run_client") {
-				runClient(service)
-				os.Exit(0)
-			}
-		}),
+	// Add runtime action
+	// We could actually do this above
+	/*micro.Action(func(c *cli.Context) {
+		if c.Bool("run_client") {
+			runClient(service)
+			os.Exit(0)
+		}
+
+	}),*/
+
 	)
 
 	// By default we'll run the server unless the flags catch us
