@@ -4,10 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	//"os"
-
 	proto "github.com/bijeshos/go.microservices.demo/proto/greeter"
-	//cli "github.com/micro/go-micro/cli/v2"
 	"github.com/micro/go-micro/v2"
 )
 
