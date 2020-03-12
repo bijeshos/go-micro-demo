@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "github.com/bijeshos/go.microservices.demo/proto/contact";
+
+message Contact {
+  string firstName = 1;
+  string lastName = 2;
+  int32 uid = 3; 
+  string email = 4;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    string number = 1;
+    PhoneType type = 2;
+  }
+
+  repeated PhoneNumber phones = 5;  
+}
+
+
+message ContactList {
+  repeated Contact contact = 1;
+}
