@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	protocontact "github.com/bijeshos/go.microservices.demo/proto/contact"
 	proto "github.com/bijeshos/go.microservices.demo/proto/greeter"
 	"github.com/micro/go-micro/v2"
 )
@@ -47,6 +48,8 @@ func main() {
 
 	service.Init()
 
+	initAddress() //added as a placeholder
+
 	// Register handler
 	proto.RegisterGreeterHandler(service.Server(), new(Greeter))
 
@@ -54,4 +57,14 @@ func main() {
 	if err := service.Run(); err != nil {
 		fmt.Println(err)
 	}
+
+}
+
+func initAddress() {
+	contact := protocontact.Contact{}
+	contact.FirstName = "John"
+	contact.LastName = "Doe"
+	contact.Email = "joh.doe@example.com"
+	contact.Uid = 1001
+	fmt.Println(contact)
 }
