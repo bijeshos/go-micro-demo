@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	proto "github.com/bijeshos/go.microservices.demo/proto/greeter"
+	pg "github.com/bijeshos/go.microservices.demo/proto/greeter"
 	micro "github.com/micro/go-micro/v2"
 )
 
@@ -15,10 +15,10 @@ func main() {
 	service.Init()
 
 	// Create new greeter client
-	greeter := proto.NewGreeterService("greeter", service.Client())
+	greeter := pg.NewGreeterService("greeter", service.Client())
 
 	// Call the greeter
-	rsp, err := greeter.Hello(context.TODO(), &proto.Request{Name: "John"})
+	rsp, err := greeter.Hello(context.TODO(), &pg.Request{Name: "John"})
 	if err != nil {
 		fmt.Println(err)
 	}
