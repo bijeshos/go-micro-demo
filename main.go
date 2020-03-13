@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	protocontact "github.com/bijeshos/go.microservices.demo/proto/contact"
-	proto "github.com/bijeshos/go.microservices.demo/proto/greeter"
+	pc "github.com/bijeshos/go.microservices.demo/proto/contact"
+	pg "github.com/bijeshos/go.microservices.demo/proto/greeter"
 	"github.com/micro/go-micro/v2"
 )
 
@@ -15,7 +15,7 @@ Example usage of top level service initialisation
 
 type Greeter struct{}
 
-func (g *Greeter) Hello(ctx context.Context, req *proto.Request, rsp *proto.Response) error {
+func (g *Greeter) Hello(ctx context.Context, req *pg.Request, rsp *pg.Response) error {
 	rsp.Msg = "Hello " + req.Name
 	return nil
 }
@@ -23,10 +23,10 @@ func (g *Greeter) Hello(ctx context.Context, req *proto.Request, rsp *proto.Resp
 // Setup and the client
 func runClient(service micro.Service) {
 	// Create new greeter client
-	greeter := proto.NewGreeterService("greeter", service.Client())
+	greeter := pg.NewGreeterService("greeter", service.Client())
 
 	// Call the greeter
-	rsp, err := greeter.Hello(context.TODO(), &proto.Request{Name: "John"})
+	rsp, err := greeter.Hello(context.TODO(), &pg.Request{Name: "John"})
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -51,7 +51,7 @@ func main() {
 	initAddress() //added as a placeholder
 
 	// Register handler
-	proto.RegisterGreeterHandler(service.Server(), new(Greeter))
+	pg.RegisterGreeterHandler(service.Server(), new(Greeter))
 
 	// Run the server
 	if err := service.Run(); err != nil {
@@ -61,7 +61,7 @@ func main() {
 }
 
 func initAddress() {
-	contact := protocontact.Contact{}
+	contact := pc.Contact{}
 	contact.FirstName = "John"
 	contact.LastName = "Doe"
 	contact.Email = "joh.doe@example.com"
