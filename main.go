@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	pc "github.com/bijeshos/go.microservices.demo/proto/contact"
+	//pc "github.com/bijeshos/go.microservices.demo/proto/contact"
 	pg "github.com/bijeshos/go.microservices.demo/proto/greeter"
 	"github.com/micro/go-micro/v2"
 )
@@ -44,11 +44,11 @@ func main() {
 
 }
 
-func initAddress() {
+/*func initAddress() {
 	contact := pc.Contact{}
 	contact.FirstName = "John"
 	contact.LastName = "Doe"
 	contact.Email = "joh.doe@example.com"
 	contact.Uid = 1001
 	fmt.Println(contact)
-}
+}*/
