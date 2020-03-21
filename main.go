@@ -20,22 +20,6 @@ func (g *Greeter) Hello(ctx context.Context, req *pg.Request, rsp *pg.Response) 
 	return nil
 }
 
-// Setup and the client
-func runClient(service micro.Service) {
-	// Create new greeter client
-	greeter := pg.NewGreeterService("greeter", service.Client())
-
-	// Call the greeter
-	rsp, err := greeter.Hello(context.TODO(), &pg.Request{Name: "John"})
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	// Print response
-	fmt.Println(rsp.Msg)
-}
-
 func main() {
 	// Create a new service. Optionally include some options here.
 	service := micro.NewService(
@@ -48,7 +32,7 @@ func main() {
 
 	service.Init()
 
-	initAddress() //added as a placeholder
+	//initAddress() //added as a placeholder
 
 	// Register handler
 	pg.RegisterGreeterHandler(service.Server(), new(Greeter))
